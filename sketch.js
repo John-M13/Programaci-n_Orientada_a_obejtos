@@ -1,9 +1,3 @@
-// Programación Orientada A Objetos
-// Mauricio Robles
-// 2024-10-07
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
 
 let bgColor;
 let pelotas = [];
