@@ -1,53 +1,55 @@
-let posX, posY;
-let velX, velY;
-let diametro;
-let rad;
-let colorFondo
+// Programación Orientada A Objetos
+// Mauricio Robles
+// 2024-10-07
+//
+// Extra for Experts:
+// - describe what you did to take this project "above and beyond"
+
+let bgColor;
+let pelotas = [];
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  colorFondo = color (random (160, 200), random (200), random (230))
-
-  rad = ceil(random(50, 50));
-  diam = rad * 2;
-  // console.log(diam);
-
-  posX = random(rad, width - rad);
-  posY = random(rad, height - rad);
-
-  // velX = random(-1, 10);
-  // velY = random(-10, 10)
-
-  velX = 5
-  velY = 5
-}
-
-function draw() {
-  background(colorFondo);
-  fill(255);
-  noStroke();
-
-  posX += velX
-  posY += velY
-
- if ( posX > width - rad || posX < rad) {
-    velX *= -1;
-  colorFondo = color(random(160, 200), random(200), random(230));
-
+  bgColor = color(random(100, 150), random(0,200), random(45, 79));
+  for (let i = 0; i < 100; i++) {
+    let nuevaPelota = new Pelota();
+    pelotas.push(nuevaPelota);
   }
-if ( posY > height - rad || posY < rad) {
-    velY*= -1;
-  colorFondo = color(random(160, 200), random(200), random(230));
-
 }
-  
-  circle(posX, posY, diam);
+function draw() {
+  background(bgColor);
+  for (let i = 0; i < 100; i++) {
+    pelotas[i].update();
+    pelotas[i].display();
+  }
 }
-
-
-function mousePressed (){
-
+class Pelota {
+  //plano de instrucciones
+  constructor() {
+    this.rad = ceil(random(10, 50));
+    this.diametro = this.rad * 2;
+    this.posX = random(this.rad, width - this.rad);
+    this.posY = random(this.rad, height - this.rad);
+    this.velX = random(-1, 5);
+    this.velY = random(-1, 5);
+    console.log("he vivido perros");
+  }
+  //métodos
+  update() {
+    this.posX += this.velX;
+    this.posY += this.velY;
+    if (this.posX > width - this.rad || this.posX < this.rad) {
+      this.velX *= -1;
+      //bgColor = color(random(100, 230), random(0, 100), random(20, 220));
+    }
+    if (this.posY > height - this.rad || this.posY < this.rad) {
+      this.velY *= -1;
+      //bgColor = color(random(100, 230), random(0, 100), random(20, 220));
+    }
+  }
+  display() {
+    fill(255);
+    noStroke();
+    circle(this.posX, this.posY, this.diametro);
+  }
 }
-
-
-
